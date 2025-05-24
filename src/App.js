@@ -3,6 +3,8 @@ import theme from './theme';
 import Layout from './components/Layout';
 import AdminLogin from './components/AdminLogin';
 import Menu from './components/Menu';
+import LandingPage from './components/LandingPage';
+
 
 function App() {
   return (
@@ -10,6 +12,7 @@ function App() {
       <Layout>
         {/* <AdminLogin /> */}
         <Menu />
+        {/* <LandingPage /> */}
       </Layout>
     </ThemeProvider>
   );

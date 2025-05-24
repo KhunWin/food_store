@@ -1,0 +1,15 @@
+import axios from 'axios';
+
+const API_URL = 'http://localhost:5000/api/menu';
+
+export const createMenuItem = async (menuData) => {
+    console.log('Sending menu data to API:', menuData);
+    try {
+        const response = await axios.post(API_URL, menuData);
+        console.log('API response:', response.data);
+        return response.data;
+    } catch (error) {
+        console.error('API error:', error.response?.data || error.message);
+        throw error;
+    }
+};
