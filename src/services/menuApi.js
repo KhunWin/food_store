@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/menu';
+const API_URL = 'http://localhost:5001/api/menu';
 
 export const createMenuItem = async (menuData) => {
     console.log('Sending menu data to API:', menuData);
@@ -10,6 +10,18 @@ export const createMenuItem = async (menuData) => {
         return response.data;
     } catch (error) {
         console.error('API error:', error.response?.data || error.message);
+        throw error;
+    }
+};
+
+
+export const getAllMenuItems = async () => {
+    try {
+        const response = await axios.get(API_URL);
+        console.log('Retrieved menu items:', response.data);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching menu items:', error.response?.data || error.message);
         throw error;
     }
 };

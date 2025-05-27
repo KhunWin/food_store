@@ -4,6 +4,8 @@ import Layout from './components/Layout';
 import AdminLogin from './components/AdminLogin';
 import Menu from './components/Menu';
 import LandingPage from './components/LandingPage';
+import FoodOrderingWebsite from './components/MainLayout';
+
 
 
 function App() {
@@ -11,8 +13,11 @@ function App() {
     <ThemeProvider theme={theme}>
       <Layout>
         {/* <AdminLogin /> */}
-        <Menu />
+        {/* <Menu /> */}
         {/* <LandingPage /> */}
+        {/* <FoodOrderingWebsite /> */}
+        <LandingPage />
+
       </Layout>
     </ThemeProvider>
   );

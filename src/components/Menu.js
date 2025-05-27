@@ -1,47 +1,11 @@
-// import React, { useState, useEffect } from 'react';
-// import { Grid, Card, CardContent, Typography } from '@mui/material';
-
-// const Menu = () => {
-//   const [menuItems, setMenuItems] = useState([
-//     { id: 1, name: 'Classic Burger', description: 'Juicy beef patty with fresh veggies', price: 8.99 },
-//     { id: 2, name: 'Margherita Pizza', description: 'Tomato, mozzarella, and basil', price: 12.99 },
-//     { id: 3, name: 'Caesar Salad', description: 'Romaine lettuce, croutons, and parmesan', price: 7.99 },
-//     { id: 4, name: 'Chocolate Lava Cake', description: 'Warm chocolate cake with vanilla ice cream', price: 6.99 }
-//   ]);
-
-//   return (
-//     <Grid container spacing={3}>
-//       {menuItems.map(item => (
-//         <Grid item xs={12} sm={6} md={4} key={item.id}>
-//           <Card>
-//             <CardContent>
-//               <Typography variant="h6">{item.name}</Typography>
-//               <Typography variant="body2" color="text.secondary">{item.description}</Typography>
-//               <Typography variant="body1">${item.price.toFixed(2)}</Typography>
-//             </CardContent>
-//           </Card>
-//         </Grid>
-//       ))}
-//     </Grid>
-//   );
-// };
-
-// export default Menu;
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
-    Box, 
-    TextField, 
-    Button, 
-    Typography, 
-    Container,
-    Grid,
-    Switch,
-    FormControlLabel
+    Container, Grid, Button, Box, TextField, FormControl,
+    Table, TableBody, TableCell, TableContainer, TableHead, 
+    TableRow, Paper, Typography, Switch, FormControlLabel
 } from '@mui/material';
-// import { databases, DATABASE_ID, MENU_COLLECTION_ID } from '../config/appwriteConfig';
 import { ID } from 'appwrite';
-import { createMenuItem } from '../services/menuApi';
+import { createMenuItem, getAllMenuItems } from '../services/menuApi';
 
 
 const Menu = () => {
@@ -56,6 +20,20 @@ const Menu = () => {
         availability: true,
         branch_id: ''
     });
+
+    const [menuItems, setMenuItems] = useState([]);
+
+    useEffect(() => {
+        const fetchMenuItems = async () => {
+            try {
+                const items = await getAllMenuItems();
+                setMenuItems(items);
+            } catch (error) {
+                console.error('Error fetching menu items:', error);
+            }
+        };
+        fetchMenuItems();
+    }, []);
 
     const [sideDish, setSideDish] = useState({ name: '', price: '' });
 
@@ -123,6 +101,7 @@ const Menu = () => {
     };
 
     return (
+        <>
         <Container maxWidth="md">
             <Box sx={{ mt: 4, mb: 4 }}>
                 <Typography variant="h4" gutterBottom>
@@ -270,6 +249,38 @@ const Menu = () => {
                 </form>
             </Box>
         </Container>
+
+        {/* <Container maxWidth="lg" sx={{ mt: 4 }}>
+            <TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Description</TableCell>
+                            <TableCell>Price</TableCell>
+                            <TableCell>Category</TableCell>
+                            <TableCell>Availability</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {menuItems.map((item) => (
+                            <TableRow key={item.$id}>
+                                <TableCell>{item.name}</TableCell>
+                                <TableCell>{item.description}</TableCell>
+                                <TableCell>${item.price}</TableCell>
+                                <TableCell>{item.category}</TableCell>
+                                <TableCell>
+                                    {item.availability ? 'Available' : 'Not Available'}
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Container> */}
+        </>
+
+        
     );
 };
 
