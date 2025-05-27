@@ -62,5 +62,26 @@ router.post('/', async (req, res) => {
     }
 });
 
+// GET all menu items
+router.get('/allmenu', async (req, res) => {
+    console.log('Receiving GET request for all menu items');
+    try {
+        const response = await databases.listDocuments(
+            DATABASE_ID,
+            MENU_COLLECTION_ID,
+            [] // No queries/filters
+        );
+        
+        console.log('Retrieved menu items:', response.documents);
+        res.json(response.documents);
+    } catch (error) {
+        console.error('Error fetching menu items:', error);
+        res.status(500).json({ 
+            error: error.message,
+            details: error.response || 'No additional details'
+        });
+    }
+});
+
 module.exports = router;
 
