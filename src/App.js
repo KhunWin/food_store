@@ -10,7 +10,6 @@
 // import MainLayout from './components/MainLayout';
 
 
-
 // // function App() {
 // //   return (
 // //     <ThemeProvider theme={theme}>
@@ -40,10 +39,13 @@
 
 // export default App;
 
+// App.js
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import MainLayout from './components/MainLayout';
 import CheckoutLayout from './components/CheckoutLayout';
+import LandingPage from './components/LandingPage';
+
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -53,7 +55,7 @@ function App() {
       <Routes>
         <Route 
           path="/" 
-          element={<MainLayout cartItems={cartItems} setCartItems={setCartItems} />} 
+          element={<LandingPage cartItems={cartItems} setCartItems={setCartItems} />} 
         />
         <Route 
           path="/checkout" 

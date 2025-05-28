@@ -1,7 +1,9 @@
+// LandingPage.jsx
 import React from 'react';
 import MainLayout from './MainLayout';
+import Menu from './Menu';
 
-export default function LandingPage() {
+export default function LandingPage({ cartItems, setCartItems }) {
   return (
     <div className="min-h-screen flex flex-col bg-green-50">
       {/* Header with logo */}
@@ -12,9 +14,14 @@ export default function LandingPage() {
         </div>
       </header>
 
+      {/* Menu component for adding menu items */}
+      <section className="bg-white shadow-md my-4">
+        <Menu />
+      </section>
+
       {/* Main content with menu items */}
       <main className="flex-grow container mx-auto p-4">
-        <MainLayout />
+        <MainLayout cartItems={cartItems} setCartItems={setCartItems} />
       </main>
 
       {/* Footer */}

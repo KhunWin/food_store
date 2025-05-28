@@ -14,6 +14,7 @@ export default function MainLayout({ cartItems, setCartItems }) {
     const fetchMenuItems = async () => {
       try {
         const data = await getAllMenuItems();
+        console.log('Menu items fetched:', data);
         setMenuItems(data);
         setLoading(false);
       } catch (err) {
@@ -48,8 +49,15 @@ export default function MainLayout({ cartItems, setCartItems }) {
           <div key={item.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
             <div className="h-48 overflow-hidden">
               <img 
-                src={item.imageUrl || '/logo.svg'} 
+                src={item.image_url || '/logo.svg'} 
                 alt={item.name}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  borderRadius: '8px',
+                  aspectRatio: '16px'
+              }}
                 className="w-full h-full object-cover"
               />
             </div>

@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 
 const API_URL = 'http://localhost:5001/api/menu';
@@ -14,6 +15,21 @@ export const createMenuItem = async (menuData) => {
     }
 };
 
+export const uploadMenuImage = async (formData) => {
+    console.log('Uploading image to server...');
+    try {
+        const response = await axios.post(`${API_URL}/upload`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        console.log('Upload API response:', response.data);
+        return response.data;
+    } catch (error) {
+        console.error('Upload API error:', error.response?.data || error.message);
+        throw error;
+    }
+};
 
 export const getAllMenuItems = async () => {
     try {
