@@ -340,7 +340,7 @@ const Menu = () => {
                             </Box>
                         </Grid>
                         
-                        <Grid item xs={12}>
+                        {/* <Grid item xs={12}>
                             <TextField
                                 fullWidth
                                 label="Branch ID"
@@ -349,8 +349,8 @@ const Menu = () => {
                                 onChange={handleInputChange}
                                 
                             />
-                        </Grid>
-                        <Grid item xs={12}>
+                        </Grid> */}
+                        {/* <Grid item xs={12}>
                             <FormControlLabel
                                 control={
                                     <Switch
@@ -364,9 +364,9 @@ const Menu = () => {
                                 }
                                 label="Available"
                             />
-                        </Grid>
+                        </Grid> */}
 
-                        {/* Side Dishes Section */}
+                        {/* Side Dishes Section
                         <Grid item xs={12}>
                             <Typography variant="h6" gutterBottom>
                                 Add Side Dishes
@@ -401,7 +401,7 @@ const Menu = () => {
                                     </Button>
                                 </Grid>
                             </Grid>
-                        </Grid>
+                        </Grid> */}
 
                         <Grid item xs={12}>
                             <Button

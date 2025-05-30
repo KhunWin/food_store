@@ -22,84 +22,7 @@ const upload = multer({
     }
 });
 
-// Test endpoint to retrieve a file from the bucket
-router.get('/test-file/:fileId', async (req, res) => {
-    const fileId = req.params.fileId;
-    console.log(`Testing file retrieval for file ID: ${fileId}`);
-    
-    try {
-        const fileInfo = await storage.getFile(IMAGE_BUCKET_ID, fileId);
-        console.log('File info retrieved:', {
-            id: fileInfo.$id,
-            name: fileInfo.name,
-            mimeType: fileInfo.mimeType,
-            sizeOriginal: fileInfo.sizeOriginal,
-            bucketId: fileInfo.bucketId,
-            $createdAt: fileInfo.$createdAt
-        });
 
-        const fileUrl = `${process.env.APPWRITE_ENDPOINT}/storage/buckets/${IMAGE_BUCKET_ID}/files/${fileId}/view?project=${process.env.APPWRITE_PROJECT_ID}&mode=admin`;
-        console.log('Generated view URL:', fileUrl);
-
-        res.json({
-            success: true,
-            fileInfo: fileInfo,
-            viewUrl: fileUrl,
-            message: 'File retrieved successfully'
-        });
-
-    } catch (error) {
-        console.error('Error retrieving file:', error);
-        res.status(500).json({
-            error: error.message,
-            details: error.response || 'No additional details',
-            type: error.type || 'Unknown error type'
-        });
-    }
-});
-
-// Test endpoint to list all files in the bucket
-router.get('/test-bucket', async (req, res) => {
-    console.log('Testing bucket access and listing files...');
-    
-    try {
-        const bucketInfo = await storage.getBucket(IMAGE_BUCKET_ID);
-        console.log('Bucket info:', {
-            id: bucketInfo.$id,
-            name: bucketInfo.name,
-            enabled: bucketInfo.enabled,
-            maximumFileSize: bucketInfo.maximumFileSize,
-            allowedFileExtensions: bucketInfo.allowedFileExtensions
-        });
-
-        const files = await storage.listFiles(IMAGE_BUCKET_ID);
-        console.log(`Found ${files.total} files in bucket`);
-        
-        files.files.forEach((file, index) => {
-            console.log(`File ${index + 1}:`, {
-                id: file.$id,
-                name: file.name,
-                mimeType: file.mimeType,
-                size: file.sizeOriginal
-            });
-        });
-
-        res.json({
-            success: true,
-            bucketInfo: bucketInfo,
-            filesCount: files.total,
-            files: files.files,
-            message: 'Bucket access successful'
-        });
-
-    } catch (error) {
-        console.error('Error accessing bucket:', error);
-        res.status(500).json({
-            error: error.message,
-            details: error.response || 'No additional details'
-        });
-    }
-});
 
 // Upload image to Appwrite storage
 router.post('/upload', upload.single('image'), async (req, res) => {
@@ -270,6 +193,84 @@ router.post('/upload', upload.single('image'), async (req, res) => {
     }
 });
 
+// Test endpoint to retrieve a file from the bucket
+router.get('/test-file/:fileId', async (req, res) => {
+    const fileId = req.params.fileId;
+    console.log(`Testing file retrieval for file ID: ${fileId}`);
+    
+    try {
+        const fileInfo = await storage.getFile(IMAGE_BUCKET_ID, fileId);
+        console.log('File info retrieved:', {
+            id: fileInfo.$id,
+            name: fileInfo.name,
+            mimeType: fileInfo.mimeType,
+            sizeOriginal: fileInfo.sizeOriginal,
+            bucketId: fileInfo.bucketId,
+            $createdAt: fileInfo.$createdAt
+        });
+
+        const fileUrl = `${process.env.APPWRITE_ENDPOINT}/storage/buckets/${IMAGE_BUCKET_ID}/files/${fileId}/view?project=${process.env.APPWRITE_PROJECT_ID}&mode=admin`;
+        console.log('Generated view URL:', fileUrl);
+
+        res.json({
+            success: true,
+            fileInfo: fileInfo,
+            viewUrl: fileUrl,
+            message: 'File retrieved successfully'
+        });
+
+    } catch (error) {
+        console.error('Error retrieving file:', error);
+        res.status(500).json({
+            error: error.message,
+            details: error.response || 'No additional details',
+            type: error.type || 'Unknown error type'
+        });
+    }
+});
+
+// Test endpoint to list all files in the bucket
+router.get('/test-bucket', async (req, res) => {
+    console.log('Testing bucket access and listing files...');
+    
+    try {
+        const bucketInfo = await storage.getBucket(IMAGE_BUCKET_ID);
+        console.log('Bucket info:', {
+            id: bucketInfo.$id,
+            name: bucketInfo.name,
+            enabled: bucketInfo.enabled,
+            maximumFileSize: bucketInfo.maximumFileSize,
+            allowedFileExtensions: bucketInfo.allowedFileExtensions
+        });
+
+        const files = await storage.listFiles(IMAGE_BUCKET_ID);
+        console.log(`Found ${files.total} files in bucket`);
+        
+        files.files.forEach((file, index) => {
+            console.log(`File ${index + 1}:`, {
+                id: file.$id,
+                name: file.name,
+                mimeType: file.mimeType,
+                size: file.sizeOriginal
+            });
+        });
+
+        res.json({
+            success: true,
+            bucketInfo: bucketInfo,
+            filesCount: files.total,
+            files: files.files,
+            message: 'Bucket access successful'
+        });
+
+    } catch (error) {
+        console.error('Error accessing bucket:', error);
+        res.status(500).json({
+            error: error.message,
+            details: error.response || 'No additional details'
+        });
+    }
+});
 // Check SDK version endpoint
 router.get('/sdk-info', (req, res) => {
     try {

@@ -1,7 +1,5 @@
-
-
 require('dotenv').config();
-const { Client, Databases, Storage, ID, Permission, Role } = require('node-appwrite');
+const { Client, Databases, Storage, ID, Permission, Role, Query } = require('node-appwrite');
 
 const client = new Client()
     .setEndpoint(process.env.APPWRITE_ENDPOINT)
@@ -14,6 +12,8 @@ const storage = new Storage(client);
 const DATABASE_ID = process.env.APPWRITE_DATABASE_ID;
 const MENU_COLLECTION_ID = process.env.APPWRITE_COLLECTION_ID;
 const IMAGE_BUCKET_ID = process.env.APPWRITE_IMAGE_BUCKET_ID;
+const ORDER_COLLECTION_ID = process.env.APPWRITE_ORDER_COLLECTION_ID;
+const USER_COLLECTION_ID = process.env.APPWRITE_USER_COLLECTION_ID;
 
 // Test the connection
 databases.listCollections(DATABASE_ID)
@@ -40,8 +40,11 @@ module.exports = {
     storage,
     DATABASE_ID,
     MENU_COLLECTION_ID,
+    ORDER_COLLECTION_ID,
     IMAGE_BUCKET_ID,
+    USER_COLLECTION_ID,
     ID,
     Permission,
-    Role
+    Role,
+    Query,
 };
