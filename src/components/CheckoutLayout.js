@@ -122,18 +122,6 @@ export default function CheckoutLayout({ cartItems, setCartItems }) {
     <div className="container mx-auto p-4 max-w-4xl">
       <h2 className="text-2xl font-bold mb-6">Checkout</h2>
 
-      {/* Debug info
-      <div className="mb-4 p-3 bg-gray-100 rounded text-sm">
-        <strong>Debug Info:</strong>
-        <br />Cart Items: {cartItems.length}
-        <br />Items: {cartItems.map((item, idx) => 
-          `${item.name} (ID: ${item.$id || item.id || item.menu_id || 'NO_ID'}, Qty: ${item.quantity})`
-        ).join(', ')}
-        <br />Menu Order Preview: {JSON.stringify(cartItems.map(item => ({
-          menu_id: item.$id || item.id || item.menu_id,
-          quantity: item.quantity
-        })))}
-      </div> */}
 
       {/* Cart Items Table */}
       <div className="mb-8">

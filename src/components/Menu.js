@@ -340,68 +340,6 @@ const Menu = () => {
                             </Box>
                         </Grid>
                         
-                        {/* <Grid item xs={12}>
-                            <TextField
-                                fullWidth
-                                label="Branch ID"
-                                name="branch_id"
-                                value={menuItem.branch_id}
-                                onChange={handleInputChange}
-                                
-                            />
-                        </Grid> */}
-                        {/* <Grid item xs={12}>
-                            <FormControlLabel
-                                control={
-                                    <Switch
-                                        checked={menuItem.availability}
-                                        onChange={(e) => setMenuItem(prev => ({
-                                            ...prev,
-                                            availability: e.target.checked
-                                        }))}
-                                        name="availability"
-                                    />
-                                }
-                                label="Available"
-                            />
-                        </Grid> */}
-
-                        {/* Side Dishes Section
-                        <Grid item xs={12}>
-                            <Typography variant="h6" gutterBottom>
-                                Add Side Dishes
-                            </Typography>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} md={5}>
-                                    <TextField
-                                        fullWidth
-                                        label="Side Dish Name"
-                                        value={sideDish.name}
-                                        onChange={handleSideDishChange}
-                                        name="name"
-                                    />
-                                </Grid>
-                                <Grid item xs={12} md={5}>
-                                    <TextField
-                                        fullWidth
-                                        label="Side Dish Price"
-                                        type="number"
-                                        value={sideDish.price}
-                                        onChange={handleSideDishChange}
-                                        name="price"
-                                    />
-                                </Grid>
-                                <Grid item xs={12} md={2}>
-                                    <Button
-                                        variant="contained"
-                                        onClick={addSideDish}
-                                        fullWidth
-                                    >
-                                        Add
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                        </Grid> */}
 
                         <Grid item xs={12}>
                             <Button

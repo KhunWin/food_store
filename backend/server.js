@@ -8,7 +8,12 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 // Middleware
-app.use(cors());
+// app.use(cors());
+// Update the CORS configuration
+app.use(cors({
+    origin: ['http://localhost:3000', 'http://frontend:3000'],
+    credentials: true
+}));
 app.use(express.json());
 
 // Test route
